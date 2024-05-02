@@ -1,38 +1,46 @@
-import { Button, Dimensions, Image, StyleSheet, TextInput, View } from 'react-native';
+import { Button, Image, StyleSheet, Text, TextInput, View } from 'react-native';
 
 export default function App() {
 
-  const width = Dimensions.get('window').width;
-  const height = Dimensions.get('window').height;
-
   const styles = StyleSheet.create({
-    root: {
-      backgroundColor: 'black',
-      height: height,
-      width: width,   
-      justifyContent: 'center',
-      alignItems: 'center'
-    },
     container: {
-      minWidth: 350,
-      gap: 10
+      justifyContent: 'center',
+      flex: 1,
+      padding: 55,
+      backgroundColor: '#16171D'
     },
-    textStyle: { color: 'blue', fontSize: 24, borderWidth: 1, borderColor: 'red' },
-    myInput: { backgroundColor: 'grey', height: 50, color: 'white', borderRadius: 10, paddingLeft: 20},
-    myButton1: { backgroundColor: 'grey', height: 50 },
-    myButton2: { backgroundColor: 'grey', height: 50 }
+    content: {
+      alignItems: 'center',
+      gap: 50
+    },
+    form: {
+      alignSelf: 'stretch',
+      gap: 16
+    },
+    input: {
+      backgroundColor: '#2E2D3D'
+    },
+    logo: {
+      width: 220
+    }
   });
 
   return (
-    <View style={styles.root}>
-      <View style={styles.container}>
-                <Image></Image>
-          <TextInput placeholder='Email' style={styles.myInput}></TextInput>
-          <TextInput  placeholder='Пароль' style={styles.myInput}></TextInput>
-          <Button title='Войти'></Button>
-          <Button title='Восстановить пароль'></Button>
-            </View >
-            </View>
+    <View style={styles.container}>
+    <View style={styles.content}>
+    <Image
+					style={styles.logo}
+					source={require('./assets/logo.png')}
+					resizeMode='contain'
+				/>
+				<View style={styles.form}>
+					<TextInput style={styles.input} />
+					<TextInput style={styles.input} />
+					<Button title='Войти' />
+				</View>
+				<Text>Восстановить пароль</Text>
+        </View>
+        </View>
   );
 }
 

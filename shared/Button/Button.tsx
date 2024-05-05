@@ -6,21 +6,19 @@ export function Button({ text, ...props }: PressableProps & { text: string }) {
 		x: 0,
 		y: 0
 	});
-	Animated.spring(animatedValue, {
+	Animated.timing(animatedValue, {
 		toValue: {
 			x: 100,
 			y: 100
 		},
-		useNativeDriver: true
+		duration: 2000,
+		useNativeDriver: false
 	}).start();
 
 	return (
 		<Pressable {...props}>
 			<Animated.View style={{
-				...styles.button, transform: [
-					{ translateX: animatedValue.x },
-					{ translateY: animatedValue.y }
-				]
+...styles.button, width: animatedValue.x, height: animatedValue.y
 			}}>
 				<Text style={styles.text}>{text}</Text>
 			</Animated.View>

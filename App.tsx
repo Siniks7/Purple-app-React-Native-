@@ -1,24 +1,19 @@
-import { Image, Platform, StyleSheet, Text, ToastAndroid, View } from 'react-native';
+import { useState } from 'react';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import { Button } from './shared/Button/Button';
+import { ErrorNotification } from './shared/ErrorNotification/ErrorNotification';
 import { Input } from './shared/Input/Input';
 import { Colors, Gaps } from './shared/tokens';
 
 export default function App() {
 
+  const [error, setError] = useState<string | undefined>();
+  
   const alert = () => {
-		// Alert
-		// Alert.alert('Ошибка', 'Неверный логин или пароль', [{
-		// 	text: 'Хорошо',
-		// 	onPress: () => {},
-		// 	style: 'cancel'
-		// }]);
-		if (Platform.OS === 'android') {
-			ToastAndroid.showWithGravity(
-				'Неверный логин или пароль',
-				ToastAndroid.LONG,
-				ToastAndroid.CENTER,
-			);
-		}
+    setError('Неверный логин и пароль');
+    setTimeout(() => {
+			setError(undefined);
+		}, 4000);
 	}
 
   const styles = StyleSheet.create({
@@ -46,6 +41,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <ErrorNotification error={error} />
     <View style={styles.content}>
     <Image
 					style={styles.logo}

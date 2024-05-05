@@ -1,4 +1,6 @@
-import { Button, Image, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Button, Image, StyleSheet, Text, View } from 'react-native';
+import { Input } from './shared/Input/Input';
+import { Colors, Gaps } from './shared/tokens';
 
 export default function App() {
 
@@ -7,15 +9,15 @@ export default function App() {
       justifyContent: 'center',
       flex: 1,
       padding: 55,
-      backgroundColor: '#16171D'
+      backgroundColor: Colors.black
     },
     content: {
       alignItems: 'center',
-      gap: 50
+      gap: Gaps.g50
     },
     form: {
       alignSelf: 'stretch',
-      gap: 16
+      gap: Gaps.g16
     },
     input: {
       backgroundColor: '#2E2D3D'
@@ -34,8 +36,8 @@ export default function App() {
 					resizeMode='contain'
 				/>
 				<View style={styles.form}>
-					<TextInput style={styles.input} />
-					<TextInput style={styles.input} />
+        <Input placeholder='Email' />
+					<Input placeholder='Пароль' />
 					<Button title='Войти' />
 				</View>
 				<Text>Восстановить пароль</Text>

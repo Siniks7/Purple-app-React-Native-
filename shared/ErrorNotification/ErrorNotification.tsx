@@ -5,15 +5,15 @@ import { ErrorNotificationProps } from './ErrorNotification.props';
 
 export function ErrorNotification({ error }: ErrorNotificationProps) {
 	const [isShown, setIsShown] = useState<boolean>(false);
-    const animatedValue = new Animated.Value(-100);
+	const animatedValue = new Animated.Value(-100);
 
 	const onEnter = () => {
 		Animated.timing(animatedValue, {
 			toValue: 0,
 			duration: 300,
-			useNativeDriver: true
+			useNativeDriver: true,
 		}).start();
-	}
+	};
 
 	useEffect(() => {
 		if (!error) {
@@ -25,7 +25,7 @@ export function ErrorNotification({ error }: ErrorNotificationProps) {
 		}, 3000);
 		return () => {
 			clearTimeout(timerId);
-		}
+		};
 	}, [error]);
 
 	if (!isShown) {
@@ -33,11 +33,13 @@ export function ErrorNotification({ error }: ErrorNotificationProps) {
 	}
 
 	return (
-        <Animated.View style={{
-			...styles.error, transform: [
-				{ translateY: animatedValue }
-			]
-		}} onLayout={onEnter}>
+		<Animated.View
+			style={{
+				...styles.error,
+				transform: [{ translateY: animatedValue }],
+			}}
+			onLayout={onEnter}
+		>
 			<Text style={styles.errorText}>{error}</Text>
 		</Animated.View>
 	);
@@ -49,11 +51,11 @@ const styles = StyleSheet.create({
 		width: Dimensions.get('screen').width,
 		backgroundColor: Colors.red,
 		padding: 15,
-		top: 50
+		top: 50,
 	},
 	errorText: {
 		fontSize: Fonts.f16,
 		color: Colors.white,
-		textAlign: 'center'
-	}
-})
+		textAlign: 'center',
+	},
+});

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Pressable, StyleSheet, TextInput, TextInputProps, View } from 'react-native';
 import EyeClosedIcon from '../../assets/icons/eye-closed';
 import EyeOpenedIcon from '../../assets/icons/eye-opened';
-import { Colors, Radius } from '../tokens';
+import { Colors, Fonts, Radius } from '../tokens';
 
 export function Input({ isPassword, ...props }: TextInputProps & { isPassword?: boolean }) {
 	const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
@@ -31,12 +31,12 @@ const styles = StyleSheet.create({
 		borderRadius: Radius.r10,
 		fontSize: 16,
 		color: Colors.gray,
-		fontFamily: 'FiraSans.ttf',
 	},
 	eyeIcon: {
 		position: 'absolute',
 		right: 0,
 		paddingHorizontal: 20,
 		paddingVertical: 18,
+		fontFamily: Fonts.regular,
 	},
 });

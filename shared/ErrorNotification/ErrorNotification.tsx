@@ -57,6 +57,5 @@ const styles = StyleSheet.create({
 		fontSize: Fonts.f16,
 		color: Colors.white,
 		textAlign: 'center',
-		fontFamily: Fonts.regular,
 	},
 });

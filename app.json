@@ -1,16 +1,17 @@
 {
   "expo": {
-    "name": "Purple-app",
-    "slug": "Purple-app",
+    "scheme": "purpleschool",
+    "name": "native-app",
+    "slug": "native-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "backgroundColor": "#16171D",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+	"backgroundColor": "#16171D",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#16171D"
     },
     "assetBundlePatterns": [
       "**/*"

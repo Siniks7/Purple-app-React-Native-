@@ -1,6 +1,6 @@
 import { useLocalSearchParams } from 'expo-router';
 import { Text, View } from 'react-native';
-import { Colors } from '../../shared/tokens';
+import { Colors } from '../../../shared/tokens';
 
 export default function CoursePage() {
 	const { alias } = useLocalSearchParams();

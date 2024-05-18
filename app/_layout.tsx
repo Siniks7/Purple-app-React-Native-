@@ -43,7 +43,7 @@ export default function RootRayout() {
 				}}
 			>
 				<Stack.Screen
-					name="index"
+					name="login"
 					options={{
 						presentation: 'modal',
 						headerShown: false,

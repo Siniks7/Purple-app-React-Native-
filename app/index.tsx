@@ -46,7 +46,7 @@ export default function App() {
 					<Input isPassword placeholder="Пароль" />
 					<Button text="Войти" onPress={alert} />
 				</View>
-				<CustomLink href={'/restore'} text="Восстановить пароль" />
+				<CustomLink href={'/course/typescript'} text="Восстановить пароль" />
 			</View>
 		</View>
 	);

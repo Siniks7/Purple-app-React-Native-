@@ -56,6 +56,13 @@ export default function RootRayout() {
 						headerShown: false,
 					}}
 				/>
+				<Stack.Screen
+					name="[...unmathed]"
+					options={{
+						presentation: 'modal',
+						headerShown: false,
+					}}
+				/>
 			</Stack>
 		</SafeAreaProvider>
 	);

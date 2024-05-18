@@ -34,6 +34,9 @@ export default function App() {
 		logo: {
 			width: 220,
 		},
+		link: {
+			color: Colors.primary,
+		},
 	});
 
 	return (
@@ -46,8 +49,8 @@ export default function App() {
 					<Input isPassword placeholder="Пароль" />
 					<Button text="Войти" onPress={alert} />
 				</View>
-				<Link href={'/restore'}>
-					<Text>Восстановить пароль</Text>
+				<Link href={'/restoreц'}>
+					<Text style={styles.link}>Восстановить пароль</Text>
 				</Link>
 			</View>
 		</View>

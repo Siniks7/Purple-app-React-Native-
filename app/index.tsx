@@ -1,7 +1,7 @@
-import { Link } from 'expo-router';
 import { useState } from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
 import { Button } from '../shared/Button/Button';
+import { CustomLink } from '../shared/CustomLink/CustomLink';
 import { ErrorNotification } from '../shared/ErrorNotification/ErrorNotification';
 import { Input } from '../shared/Input/Input';
 import { Colors, Gaps } from '../shared/tokens';
@@ -34,9 +34,6 @@ export default function App() {
 		logo: {
 			width: 220,
 		},
-		link: {
-			color: Colors.primary,
-		},
 	});
 
 	return (
@@ -49,9 +46,7 @@ export default function App() {
 					<Input isPassword placeholder="Пароль" />
 					<Button text="Войти" onPress={alert} />
 				</View>
-				<Link href={'/restoreц'}>
-					<Text style={styles.link}>Восстановить пароль</Text>
-				</Link>
+				<CustomLink href={'/restore'} text="Восстановить пароль" />
 			</View>
 		</View>
 	);

@@ -1,6 +1,6 @@
-import { Link } from 'expo-router';
 import { Image, StyleSheet, Text, View } from 'react-native';
-import { Colors, Gaps } from '../shared/tokens';
+import { CustomLink } from '../shared/CustomLink/CustomLink';
+import { Colors, Fonts, Gaps } from '../shared/tokens';
 
 export default function UnmatchedCustom() {
 	const styles = StyleSheet.create({
@@ -8,21 +8,20 @@ export default function UnmatchedCustom() {
 			justifyContent: 'center',
 			flex: 1,
 			padding: 55,
-			backgroundColor: Colors.black,
 		},
 		content: {
 			alignItems: 'center',
 			gap: Gaps.g50,
 		},
-		info: {
-			marginTop: -70,
+		image: {
+			width: 204,
+			height: 282,
+		},
+		text: {
 			color: Colors.white,
-		},
-		logo: {
-			width: 260,
-		},
-		link: {
-			color: Colors.primary,
+			fontSize: Fonts.f18,
+			textAlign: 'center',
+			fontFamily: Fonts.regular,
 		},
 	});
 
@@ -30,16 +29,14 @@ export default function UnmatchedCustom() {
 		<View style={styles.container}>
 			<View style={styles.content}>
 				<Image
-					style={styles.logo}
+					style={styles.image}
 					source={require('../assets/images/unmatched.png')}
 					resizeMode="contain"
 				/>
-				<Text style={styles.info}>
-					Ооо...что-то пошло не так. Попробуйте вернуться на главный экран приложения.
+				<Text style={styles.text}>
+					Ооо... что-то пошло не так. Попробуйте вернуться на главный экран приложения
 				</Text>
-				<Link href={'/'}>
-					<Text style={styles.link}>На главный экран</Text>
-				</Link>
+				<CustomLink href={'/'} text="На главный экран" />
 			</View>
 		</View>
 	);

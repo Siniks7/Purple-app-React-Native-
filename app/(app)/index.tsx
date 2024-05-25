@@ -1,21 +1,14 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useEffect } from 'react';
+import { useAtom } from 'jotai';
 import { Text, View } from 'react-native';
+import { profileAtom } from '../../entities/user/model/user.state';
 import { Colors } from '../../shared/tokens';
 
 export default function MyCourses() {
-	useEffect(() => {
-		AsyncStorage.setItem('demo', 'test').then(async () => {
-			console.log(await AsyncStorage.getAllKeys());
-			console.log(await AsyncStorage.getItem('demo'));
-			console.log(await AsyncStorage.removeItem('demo'));
-			console.log(await AsyncStorage.getItem('demo'));
-		});
-	}, []);
+	const [profile] = useAtom(profileAtom);
 
 	return (
 		<View>
-			<Text style={{ color: Colors.white }}>MyCourses</Text>
+			<Text style={{ color: Colors.white }}>{profile.profile?.name}</Text>
 		</View>
 	);
 }

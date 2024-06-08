@@ -1,16 +1,21 @@
 import { DrawerContentComponentProps, DrawerContentScrollView } from '@react-navigation/drawer';
+import { useSetAtom } from 'jotai';
 import { Image, StyleSheet, Text, View } from 'react-native';
+import { logoutAtom } from '../../../../entities/auth/model/auth.state';
 import { CustomLink } from '../../../../shared/CustomLink/CustomLink';
 import { Colors } from '../../../../shared/tokens';
+import { CloseDrawer } from '../CloseDrawer/CloseDrawer';
 
 export function CustomDrawer(props: DrawerContentComponentProps) {
+	const logout = useSetAtom(logoutAtom);
 	return (
 		<DrawerContentScrollView {...props} contentContainerStyle={styles.scrollView}>
-			<View>
+			<View style={styles.content}>
+				<CloseDrawer {...props.navigation} />
 				<Text>Текст</Text>
 			</View>
-			<View>
-				<CustomLink text="Выход" href={'/login'} />
+			<View style={styles.footer}>
+				<CustomLink text="Выход" onPress={() => logout()} href={'/login'} />
 				<Image
 					style={styles.logo}
 					source={require('../../../../assets/logo.png')}
@@ -27,6 +32,14 @@ const styles = StyleSheet.create({
 		backgroundColor: Colors.black,
 	},
 	logo: {
-		width: 220,
+		width: 160,
+	},
+	content: {
+		flex: 1,
+	},
+	footer: {
+		gap: 50,
+		alignItems: 'center',
+		marginBottom: 40,
 	},
 });

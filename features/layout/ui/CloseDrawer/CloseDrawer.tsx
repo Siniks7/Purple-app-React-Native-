@@ -14,8 +14,6 @@ export function CloseDrawer(navigation: DrawerNavigationHelpers) {
 
 const styles = StyleSheet.create({
 	button: {
-		justifyContent: 'center',
-		alignItems: 'center',
 		position: 'absolute',
 		top: 20,
 		right: 20,

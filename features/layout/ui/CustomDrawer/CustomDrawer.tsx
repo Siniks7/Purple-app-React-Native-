@@ -2,12 +2,20 @@ import { DrawerContentComponentProps, DrawerContentScrollView } from '@react-nav
 import { useAtom, useSetAtom } from 'jotai';
 import { useEffect } from 'react';
 import { Image, StyleSheet, View } from 'react-native';
+import CoursesIcon from '../../../../assets/menu/courses';
+import ProfileIcon from '../../../../assets/menu/profile';
 import { logoutAtom } from '../../../../entities/auth/model/auth.state';
 import { loadProfileAtom } from '../../../../entities/user/model/user.state';
+import { MenuItem } from '../../../../entities/user/ui/MenuItem/MenuItem';
 import { UserMenu } from '../../../../entities/user/ui/UserMenu/UserMenu';
 import { CustomLink } from '../../../../shared/CustomLink/CustomLink';
 import { Colors } from '../../../../shared/tokens';
 import { CloseDrawer } from '../CloseDrawer/CloseDrawer';
+
+const MENU = [
+	{ text: 'Курсы', icon: <CoursesIcon />, path: '/(app)' },
+	{ text: 'Профиль', icon: <ProfileIcon />, path: '/profile' },
+];
 
 export function CustomDrawer(props: DrawerContentComponentProps) {
 	const logout = useSetAtom(logoutAtom);
@@ -22,6 +30,9 @@ export function CustomDrawer(props: DrawerContentComponentProps) {
 			<CloseDrawer {...props.navigation} />
 			<View style={styles.content}>
 				<UserMenu user={profile.profile} />
+				{MENU.map((menu) => (
+					<MenuItem key={menu.path} {...menu} navigation={props.navigation} />
+				))}
 			</View>
 			<View style={styles.footer}>
 				<CustomLink text="Выход" onPress={() => logout()} href={'/login'} />

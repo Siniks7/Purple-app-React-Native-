@@ -3,6 +3,7 @@ import { Drawer } from 'expo-router/drawer';
 import { useAtomValue } from 'jotai';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { authAtom } from '../../entities/auth/model/auth.state';
+import { CustomDrawer } from '../../features/layout/ui/CustomDrawer/CustomDrawer';
 import { MenuButton } from '../../features/layout/ui/MenuButton/MenuButton';
 import { Colors, Fonts } from '../../shared/tokens';
 
@@ -16,6 +17,7 @@ export default function AppRayout() {
 		// eslint-disable-next-line react-native/no-inline-styles
 		<GestureHandlerRootView style={{ flex: 1 }}>
 			<Drawer
+				drawerContent={(props) => <CustomDrawer {...props} />}
 				screenOptions={({ navigation }) => ({
 					headerStyle: {
 						backgroundColor: Colors.blackLight,

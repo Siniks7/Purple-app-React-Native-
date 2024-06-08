@@ -3,6 +3,8 @@ import { Drawer } from 'expo-router/drawer';
 import { useAtomValue } from 'jotai';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { authAtom } from '../../entities/auth/model/auth.state';
+import { MenuButton } from '../../features/layout/ui/MenuButton/MenuButton';
+import { Colors, Fonts } from '../../shared/tokens';
 
 export default function AppRayout() {
 	const { access_token } = useAtomValue(authAtom);
@@ -13,8 +15,33 @@ export default function AppRayout() {
 	return (
 		// eslint-disable-next-line react-native/no-inline-styles
 		<GestureHandlerRootView style={{ flex: 1 }}>
-			<Drawer>
-				<Drawer.Screen name="index" />
+			<Drawer
+				screenOptions={({ navigation }) => ({
+					headerStyle: {
+						backgroundColor: Colors.blackLight,
+						shadowColor: Colors.blackLight,
+						shadowOpacity: 0,
+					},
+					headerLeft: () => {
+						return <MenuButton navigation={navigation} />;
+					},
+					headerTitleStyle: {
+						color: Colors.white,
+						fontFamily: Fonts.regular,
+						fontSize: Fonts.f20,
+					},
+					headerTitleAlign: 'center',
+					sceneContainerStyle: {
+						backgroundColor: Colors.black,
+					},
+				})}
+			>
+				<Drawer.Screen
+					name="index"
+					options={{
+						title: 'Мои курсы',
+					}}
+				/>
 			</Drawer>
 		</GestureHandlerRootView>
 	);

@@ -1,8 +1,8 @@
 import { Link } from 'expo-router';
 import { Text, View } from 'react-native';
-import { Colors } from '../shared/tokens';
+import { Colors } from '../../shared/tokens';
 
-export default function Restore() {
+export default function Profile() {
 	return (
 		<View>
 			<Link href={'/'}>

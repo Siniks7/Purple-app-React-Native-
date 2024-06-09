@@ -13,8 +13,8 @@ import { Colors } from '../../../../shared/tokens';
 import { CloseDrawer } from '../CloseDrawer/CloseDrawer';
 
 const MENU = [
-	{ text: 'Курсы', icon: <CoursesIcon />, path: '/(app)' },
-	{ text: 'Профиль', icon: <ProfileIcon />, path: '/profile' },
+	{ text: 'Курсы', icon: <CoursesIcon />, path: 'index' },
+	{ text: 'Профиль', icon: <ProfileIcon />, path: 'profile' },
 ];
 
 export function CustomDrawer(props: DrawerContentComponentProps) {
@@ -31,7 +31,7 @@ export function CustomDrawer(props: DrawerContentComponentProps) {
 			<View style={styles.content}>
 				<UserMenu user={profile.profile} />
 				{MENU.map((menu) => (
-					<MenuItem key={menu.path} {...menu} navigation={props.navigation} />
+					<MenuItem key={menu.path} {...menu} drawer={{ ...props }} />
 				))}
 			</View>
 			<View style={styles.footer}>
@@ -56,7 +56,6 @@ const styles = StyleSheet.create({
 	},
 	content: {
 		flex: 1,
-		alignItems: 'center',
 		marginTop: 20,
 	},
 	footer: {

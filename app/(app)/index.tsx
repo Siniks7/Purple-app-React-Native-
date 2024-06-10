@@ -8,7 +8,7 @@ export default function MyCourses() {
 	const logout = useSetAtom(logoutAtom);
 	return (
 		<View>
-			<Text style={{ color: Colors.white }}>index</Text>
+			<Text style={{ color: Colors.white }}>Курсы!</Text>
 			<Button text="Выход" onPress={logout} />
 		</View>
 	);

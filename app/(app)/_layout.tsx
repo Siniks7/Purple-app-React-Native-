@@ -1,11 +1,12 @@
 import { Redirect } from 'expo-router';
 import { Drawer } from 'expo-router/drawer';
 import { useAtomValue } from 'jotai';
+import { StyleSheet } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { authAtom } from '../../entities/auth/model/auth.state';
-import { CustomDrawer } from '../../features/layout/ui/CustomDrawer/CustomDrawer';
 import { MenuButton } from '../../features/layout/ui/MenuButton/MenuButton';
 import { Colors, Fonts } from '../../shared/tokens';
+import { CustomDrawer } from '../../widget/layout/ui/CustomDrawer/CustomDrawer';
 
 export default function AppRayout() {
 	const { access_token } = useAtomValue(authAtom);
@@ -15,7 +16,7 @@ export default function AppRayout() {
 
 	return (
 		// eslint-disable-next-line react-native/no-inline-styles
-		<GestureHandlerRootView style={{ flex: 1 }}>
+		<GestureHandlerRootView style={styles.wrapper}>
 			<Drawer
 				drawerContent={(props) => <CustomDrawer {...props} />}
 				screenOptions={({ navigation }) => ({
@@ -54,3 +55,9 @@ export default function AppRayout() {
 		</GestureHandlerRootView>
 	);
 }
+
+const styles = StyleSheet.create({
+	wrapper: {
+		flex: 1,
+	},
+});

@@ -1,13 +1,17 @@
 /* eslint-disable prettier/prettier */
+import axios, { AxiosError } from 'axios';
 import {
-    MediaTypeOptions,
-    PermissionStatus,
-    launchImageLibraryAsync,
-    useMediaLibraryPermissions,
+	MediaTypeOptions,
+	PermissionStatus,
+	launchImageLibraryAsync,
+	useMediaLibraryPermissions,
 } from 'expo-image-picker';
+import FormData from 'form-data';
 import { Alert, Pressable, StyleSheet, Text, View } from 'react-native';
 import UploadIcon from '../../assets/icons/upload';
+import { FILE_API } from '../api';
 import { Colors, Fonts, Gaps, Radius } from '../tokens';
+import { UploadResponse } from './ImageUploader.interface';
 
 interface ImageUploaderProps {
 	onUpload: (uri: string) => void;
@@ -42,8 +46,29 @@ export function ImageUploader({ onUpload }: ImageUploaderProps) {
 		if (!result.assets) {
 			return;
 		}
-		onUpload(result.assets[0].uri);
+		await uploadToServer(result.assets[0].uri, result.assets[0].fileName ?? '');
 	};
+
+	const uploadToServer = async (uri: string, name: string) => {
+		const formData = new FormData();
+		formData.append('files', {
+			uri,
+			name,
+			type: 'image/jpeg',
+		});
+		try {
+			const { data } = await axios.post<UploadResponse>(FILE_API.uploadImage, formData, {
+				headers: {
+					'Content-Type': 'multipart/form-data',
+				},
+			});
+			onUpload(data.urls.original);
+		} catch (error) {
+			if (error instanceof AxiosError) {
+				console.error(error);
+			}
+		}
+	}
 
 	return (
 		<Pressable onPress={pickImage}>

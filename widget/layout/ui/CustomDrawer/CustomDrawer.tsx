@@ -7,10 +7,10 @@ import ProfileIcon from '../../../../assets/menu/profile';
 import { logoutAtom } from '../../../../entities/auth/model/auth.state';
 import { loadProfileAtom } from '../../../../entities/user/model/user.state';
 import { MenuItem } from '../../../../entities/user/ui/MenuItem/MenuItem';
-import { UserMenu } from '../../../../entities/user/ui/UserMenu/UserMenu';
 import { CloseDrawer } from '../../../../features/layout/ui/CloseDrawer/CloseDrawer';
 import { CustomLink } from '../../../../shared/CustomLink/CustomLink';
 import { Colors } from '../../../../shared/tokens';
+import { UserMenu } from '../../../user/ui/UserMenu/UserMenu';
 
 const MENU = [
 	{ text: 'Курсы', icon: <CoursesIcon />, path: 'index' },

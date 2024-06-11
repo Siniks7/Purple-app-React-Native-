@@ -17,6 +17,11 @@ export const updateProfileAtom = atom(
 	async (get, set, { photo }: { photo: string }) => {
 		try {
 			const { access_token } = await get(authAtom);
+			set(profileAtom, {
+				isLoading: true,
+				profile: null,
+				error: null,
+			});
 			const { data } = await axios.patch<IProfile>(
 				API.profile,
 				{

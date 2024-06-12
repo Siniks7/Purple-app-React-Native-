@@ -1,3 +1,4 @@
+import * as Sharing from 'expo-sharing';
 import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
@@ -11,6 +12,12 @@ export default function Profile() {
 	const [image, setImage] = useState<string | null>(null);
 	const [profile, updateProfile] = useAtom(updateProfileAtom);
 
+	useEffect(() => {
+		if (profile && profile.profile?.photo) {
+			setImage(profile.profile?.photo);
+		}
+	}, [profile]);
+
 	const submitProfile = () => {
 		if (!image) {
 			return;
@@ -18,11 +25,15 @@ export default function Profile() {
 		updateProfile({ photo: image });
 	};
 
-	useEffect(() => {
-		if (profile && profile.profile?.photo) {
-			setImage(profile.profile?.photo);
+	const shareProfile = async () => {
+		const isShaingAvailable = await Sharing.isAvailableAsync();
+		if (!isShaingAvailable) {
+			return;
 		}
-	}, [profile]);
+		await Sharing.shareAsync('123', {
+			dialogTitle: 'Поделиться профилем',
+		});
+	};
 
 	return (
 		<View>
@@ -32,6 +43,7 @@ export default function Profile() {
 			</View>
 			<View style={styles.button}>
 				<Button text="Сохранить" onPress={submitProfile} />
+				<Button text="Поделиться" onPress={shareProfile} />
 			</View>
 		</View>
 	);
@@ -47,5 +59,6 @@ const styles = StyleSheet.create({
 	},
 	button: {
 		marginHorizontal: 20,
+		gap: 10,
 	},
 });

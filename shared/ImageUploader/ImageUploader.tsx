@@ -18,7 +18,7 @@ interface ImageUploaderProps {
 	onError: (error: string) => void;
 }
 
-export function ImageUploader({ onUpload, onError }: ImageUploaderProps) {
+export function ImageUploader({ onUpload, onError}: ImageUploaderProps) {
 	const [libraryPermissions, requestLibraryPermission] = useMediaLibraryPermissions();
 
 	const upload = async () => {

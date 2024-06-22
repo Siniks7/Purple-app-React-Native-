@@ -3,7 +3,7 @@ import { router } from 'expo-router';
 import { Orientation } from 'expo-screen-orientation';
 import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
-import { Dimensions, Image, StyleSheet, View } from 'react-native';
+import { Dimensions, Image, KeyboardAvoidingView, Platform, StyleSheet, View } from 'react-native';
 import { loginAtom } from '../entities/auth/model/auth.state';
 import { Button } from '../shared/Button/Button';
 import { CustomLink } from '../shared/CustomLink/CustomLink';
@@ -70,7 +70,10 @@ export default function App() {
 	return (
 		<View style={styles.container}>
 			<ErrorNotification error={localError} />
-			<View style={styles.content}>
+			<KeyboardAvoidingView
+				behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+				style={styles.content}
+			>
 				<Image style={styles.logo} source={require('../assets/logo.png')} resizeMode="contain" />
 				<View style={styles.form}>
 					<View
@@ -104,7 +107,7 @@ export default function App() {
 					<Button text="Войти" onPress={submit} isLoading={isLoading} />
 				</View>
 				<CustomLink href={'/restore'} text="Восстановить пароль" />
-			</View>
+			</KeyboardAvoidingView>
 		</View>
 	);
 }

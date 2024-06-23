@@ -3,7 +3,8 @@ import { useAtomValue, useSetAtom } from 'jotai';
 import { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { courseAtom, loadCourseAtom } from '../../entities/course/model/course.state';
-import { CourseItem } from '../../entities/course/ui/courseItem/courseItem';
+import { CourseCard } from '../../entities/course/ui/courseCard/courseCard';
+import { Gaps } from '../../shared/tokens';
 
 export default function MyCourses() {
 	const { isLoading, error, courses } = useAtomValue(courseAtom);
@@ -14,14 +15,16 @@ export default function MyCourses() {
 	}, []);
 
 	return (
-		<View style={styles.container}>
-			{courses.length > 0 && courses.map((c) => <CourseItem key={c.id} {...c}></CourseItem>)}
+		<View style={styles.wrapper}>
+			{courses.length > 0 && courses.map((c) => <CourseCard {...c} key={c.id} />)}
 		</View>
 	);
 }
 
 const styles = StyleSheet.create({
-	container: {
-		gap: 15,
+	wrapper: {
+		flexDirection: 'column',
+		gap: Gaps.g20,
+		padding: 20,
 	},
 });

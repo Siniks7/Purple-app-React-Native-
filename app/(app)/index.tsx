@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useEffect } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import { courseAtom, loadCourseAtom } from '../../entities/course/model/course.state';
 import { CourseCard } from '../../entities/course/ui/courseCard/courseCard';
 import { Gaps } from '../../shared/tokens';
@@ -15,9 +15,11 @@ export default function MyCourses() {
 	}, []);
 
 	return (
-		<View style={styles.wrapper}>
-			{courses.length > 0 && courses.map((c) => <CourseCard {...c} key={c.id} />)}
-		</View>
+		<ScrollView>
+			<View style={styles.wrapper}>
+				{courses.length > 0 && courses.map((c) => <CourseCard {...c} key={c.id} />)}
+			</View>
+		</ScrollView>
 	);
 }
 

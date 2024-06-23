@@ -11,7 +11,6 @@ export const Colors = {
 	red: '#CC384E',
 	border: '#4D5064',
 	secondary: '#E47AD5',
-	border: '#4D5064',
 };
 
 export const Gaps = {

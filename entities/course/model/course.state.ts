@@ -29,7 +29,7 @@ export const loadCourseAtom = atom(
 			});
 			set(courseAtom, {
 				isLoading: false,
-				courses: data.other,
+				courses: [...data.my, ...data.other],
 				error: null,
 			});
 		} catch (error) {
@@ -52,4 +52,5 @@ export interface CourseState {
 
 export interface IMyCourses {
 	other: StudentCourseDescription[];
+	my: StudentCourseDescription[];
 }

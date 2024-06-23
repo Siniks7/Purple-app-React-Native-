@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useEffect } from 'react';
-import { Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { courseAtom, loadCourseAtom } from '../../entities/course/model/course.state';
-import { Colors } from '../../shared/tokens';
+import { CourseItem } from '../../entities/course/ui/courseItem/courseItem';
 
 export default function MyCourses() {
 	const { isLoading, error, courses } = useAtomValue(courseAtom);
@@ -13,14 +14,14 @@ export default function MyCourses() {
 	}, []);
 
 	return (
-		<View>
-			<Text style={{ color: Colors.white }}>Курсы</Text>
-			{courses.length > 0 &&
-				courses.map((c) => (
-					<Text style={{ color: Colors.white }} key={c.id}>
-						{c.title}
-					</Text>
-				))}
+		<View style={styles.container}>
+			{courses.length > 0 && courses.map((c) => <CourseItem key={c.id} {...c}></CourseItem>)}
 		</View>
 	);
 }
+
+const styles = StyleSheet.create({
+	container: {
+		gap: 15,
+	},
+});

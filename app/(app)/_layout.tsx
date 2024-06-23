@@ -42,13 +42,13 @@ export default function AppRayout() {
 				<Drawer.Screen
 					name="index"
 					options={{
-						title: 'Мои курсы',
+						title: 'Курсы',
 					}}
 				/>
 				<Drawer.Screen
 					name="profile"
 					options={{
-						title: 'Мой профиль',
+						title: 'Профиль',
 					}}
 				/>
 			</Drawer>

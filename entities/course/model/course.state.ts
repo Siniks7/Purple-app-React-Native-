@@ -22,17 +22,14 @@ export const loadCourseAtom = atom(
 				courses: [],
 				error: null,
 			});
-			const { data } = await axios.get<StudentCourseDescription[]>(API.my, {
-				params: {
-					studentCourse: 'dontMy',
-				},
+			const { data } = await axios.get<IMyCourses>(API.my, {
 				headers: {
 					Authorization: `Bearer ${access_token}`,
 				},
 			});
 			set(courseAtom, {
 				isLoading: false,
-				courses: data,
+				courses: data.other,
 				error: null,
 			});
 		} catch (error) {
@@ -51,4 +48,8 @@ export interface CourseState {
 	courses: StudentCourseDescription[];
 	isLoading: boolean;
 	error: string | null;
+}
+
+export interface IMyCourses {
+	other: StudentCourseDescription[];
 }

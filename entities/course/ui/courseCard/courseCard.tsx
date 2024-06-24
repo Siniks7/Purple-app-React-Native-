@@ -4,9 +4,9 @@ import { Chip } from '../../../../shared/Chip/Chip';
 import { Colors, Fonts, Gaps, Radius } from '../../../../shared/tokens';
 import { StudentCourseDescription } from '../../model/course.model';
 
-export function CourseCard({ image, shortTitle, courseOnDirection }: StudentCourseDescription) {
+export function CourseCard({ id, image, shortTitle, courseOnDirection }: StudentCourseDescription) {
 	return (
-		<View style={styles.card}>
+		<View style={styles.card} key={id}>
 			<Image
 				source={{
 					uri: image,

@@ -2,6 +2,7 @@ import { useFonts } from 'expo-font';
 import { SplashScreen, Stack } from 'expo-router';
 import { useEffect } from 'react';
 import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { Notificaiton } from '../shared/Notification/Notification';
 import { Colors } from '../shared/tokens';
 
 SplashScreen.preventAutoHideAsync();
@@ -32,6 +33,7 @@ export default function RootRayout() {
 
 	return (
 		<SafeAreaProvider>
+			<Notificaiton />
 			{/* <StatusBar style="light" /> */}
 			<Stack
 				screenOptions={{

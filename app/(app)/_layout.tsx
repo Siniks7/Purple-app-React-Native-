@@ -1,4 +1,3 @@
-import * as Notificaitons from 'expo-notifications';
 import { Redirect } from 'expo-router';
 import { Drawer } from 'expo-router/drawer';
 import { useAtomValue } from 'jotai';
@@ -8,14 +7,6 @@ import { authAtom } from '../../entities/auth/model/auth.state';
 import { MenuButton } from '../../features/layout/ui/MenuButton/MenuButton';
 import { Colors, Fonts } from '../../shared/tokens';
 import { CustomDrawer } from '../../widget/layout/ui/CustomDrawer/CustomDrawer';
-
-Notificaitons.setNotificationHandler({
-	handleNotification: async () => ({
-		shouldPlaySound: true,
-		shouldSetBadge: true,
-		shouldShowAlert: true,
-	}),
-});
 
 export default function AppRayout() {
 	const { access_token } = useAtomValue(authAtom);

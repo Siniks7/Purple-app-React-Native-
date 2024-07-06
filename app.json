@@ -3,6 +3,7 @@
     "scheme": "purpleschool",
     "name": "native-app",
     "slug": "native-app",
+    "extra": { "eas": { "projectId": "9e8de316-bef0-4e46-9476-cabcea343056" } },
     "version": "1.0.0",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",

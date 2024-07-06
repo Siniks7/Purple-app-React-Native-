@@ -23,6 +23,7 @@ export function Notificaiton() {
 				const path = `/(app)/course/${alias}`;
 				console.log(path);
 				router.push(path);
+				// router.replace('/restore');
 				// return <Redirect href={path} />;
 				// router.replace(`/(app)/course/${alias}`);
 			},

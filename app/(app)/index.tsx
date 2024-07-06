@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import Constants from 'expo-constants';
+import { isDevice } from 'expo-device';
 import * as Notificaitons from 'expo-notifications';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useEffect } from 'react';
@@ -39,16 +41,22 @@ export default function MyCourses() {
 		if (!granted) {
 			await requestPermissions();
 		}
-		Notificaitons.scheduleNotificationAsync({
-			content: {
-				title: 'Новый курс TypeScript',
-				body: 'Начни учиться уже сейчас!',
-				data: { alias: 'typescript' },
-			},
-			trigger: {
-				seconds: 2,
-			},
-		});
+		if (isDevice) {
+			const token = await Notificaitons.getExpoPushTokenAsync({
+				projectId: Constants.expoConfig?.extra?.eas.projectId,
+			});
+			console.log(token);
+			// Notificaitons.scheduleNotificationAsync({
+			// 	content: {
+			// 		title: 'Новый курс TypeScript',
+			// 		body: 'Начни учиться уже сейчас!',
+			// 		data: { alias: 'typescript' },
+			// 	},
+			// 	trigger: {
+			// 		seconds: 2,
+			// 	},
+			// });
+		}
 	};
 
 	const renderCourse = ({ item }: { item: StudentCourseDescription }) => {

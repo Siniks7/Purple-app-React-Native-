@@ -1,10 +1,10 @@
 import MaskedView from '@react-native-masked-view/masked-view';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Image, Linking, StyleSheet, Text, View } from 'react-native';
+import { StudentCourseDescription } from '../../../../entities/course/model/course.model';
 import { Button } from '../../../../shared/Button/Button';
 import { Chip } from '../../../../shared/Chip/Chip';
 import { Colors, Fonts, Gaps, Radius } from '../../../../shared/tokens';
-import { StudentCourseDescription } from '../../model/course.model';
 
 export function CourseCard({
 	id,

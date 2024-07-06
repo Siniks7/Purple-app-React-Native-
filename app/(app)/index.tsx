@@ -4,8 +4,8 @@ import { useEffect } from 'react';
 import { ActivityIndicator, FlatList, RefreshControl, StyleSheet, View } from 'react-native';
 import { StudentCourseDescription } from '../../entities/course/model/course.model';
 import { courseAtom, loadCourseAtom } from '../../entities/course/model/course.state';
-import { CourseCard } from '../../entities/course/ui/courseCard/courseCard';
 import { Colors } from '../../shared/tokens';
+import { CourseCard } from '../../widget/course/ui/courseCard/courseCard';
 
 export default function MyCourses() {
 	const { isLoading, error, courses } = useAtomValue(courseAtom);

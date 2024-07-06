@@ -1,5 +1,8 @@
 import * as Notificaitons from 'expo-notifications';
+import { useRouter } from 'expo-router';
 import { useEffect } from 'react';
+
+const router = useRouter();
 
 export function Notificaiton() {
 	Notificaitons.setNotificationHandler({
@@ -16,8 +19,12 @@ export function Notificaiton() {
 		});
 		const subResponseReceived = Notificaitons.addNotificationResponseReceivedListener(
 			(notification) => {
-				console.log('Clicked');
-				console.log(notification.notification.request.content.data);
+				const alias = notification.notification.request.content.data.alias;
+				const path = `/(app)/course/${alias}`;
+				console.log(path);
+				router.push(path);
+				// return <Redirect href={path} />;
+				// router.replace(`/(app)/course/${alias}`);
 			},
 		);
 		return () => {

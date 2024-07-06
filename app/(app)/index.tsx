@@ -41,12 +41,12 @@ export default function MyCourses() {
 		}
 		Notificaitons.scheduleNotificationAsync({
 			content: {
-				title: 'Не забудь пройти курс',
-				body: 'Не забывай учиться каждый день!',
-				data: { success: true },
+				title: 'Новый курс TypeScript',
+				body: 'Начни учиться уже сейчас!',
+				data: { alias: 'typescript' },
 			},
 			trigger: {
-				seconds: 5,
+				seconds: 2,
 			},
 		});
 	};

@@ -60,7 +60,7 @@ export default function App() {
 			gap: Gaps.g16,
 		},
 		logo: {
-			width: Platform.select({ ios: 220, android: 250 }),
+			width: 220,
 		},
 		inputs: {
 			gap: Gaps.g16,

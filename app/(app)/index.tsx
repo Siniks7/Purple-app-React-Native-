@@ -1,19 +1,55 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import * as Notificaitons from 'expo-notifications';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useEffect } from 'react';
 import { ActivityIndicator, FlatList, RefreshControl, StyleSheet, View } from 'react-native';
 import { StudentCourseDescription } from '../../entities/course/model/course.model';
 import { courseAtom, loadCourseAtom } from '../../entities/course/model/course.state';
+import { Button } from '../../shared/Button/Button';
 import { Colors } from '../../shared/tokens';
 import { CourseCard } from '../../widget/course/ui/courseCard/courseCard';
 
 export default function MyCourses() {
-	const { isLoading, error, courses } = useAtomValue(courseAtom);
+	const { isLoading, courses } = useAtomValue(courseAtom);
 	const loadCourse = useSetAtom(loadCourseAtom);
 
 	useEffect(() => {
 		loadCourse();
 	}, []);
+
+	const allowsNotification = async () => {
+		const settings = await Notificaitons.getPermissionsAsync();
+		return (
+			settings.granted || settings.ios?.status == Notificaitons.IosAuthorizationStatus.PROVISIONAL
+		);
+	};
+
+	const requestPermissions = async () => {
+		return Notificaitons.requestPermissionsAsync({
+			ios: {
+				allowAlert: true,
+				allowBadge: true,
+				allowSound: true,
+			},
+		});
+	};
+
+	const scheduleNotification = async () => {
+		const granted = await allowsNotification();
+		if (!granted) {
+			await requestPermissions();
+		}
+		Notificaitons.scheduleNotificationAsync({
+			content: {
+				title: 'Не забудь пройти курс',
+				body: 'Не забывай учиться каждый день!',
+				data: { success: true },
+			},
+			trigger: {
+				seconds: 5,
+			},
+		});
+	};
 
 	const renderCourse = ({ item }: { item: StudentCourseDescription }) => {
 		return (
@@ -33,6 +69,7 @@ export default function MyCourses() {
 			{isLoading && (
 				<ActivityIndicator style={styles.activity} size="large" color={Colors.primary} />
 			)}
+			<Button text="Напомнить" onPress={scheduleNotification} />
 			{courses.length > 0 && (
 				<FlatList
 					refreshControl={

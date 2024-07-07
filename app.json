@@ -2,11 +2,13 @@
   "expo": {
     "scheme": "purpleschool",
     "name": "PupleSchool Demo App",
-    "slug": "purple-school-demo-app",
+    "slug": "purple-app",
     "description": "Приложение школы PurpleSchool для прохождения курсов",
-    "extra": { "eas": { "projectId": "9e8de316-bef0-4e46-9476-cabcea343056" } },
     "version": "1.0.0",
-    "platforms": ["ios", "android"],
+    "platforms": [
+      "ios",
+      "android"
+    ],
     "icon": "./assets/icon.png",
     "orientation": "portrait",
     "userInterfaceStyle": "light",
@@ -27,7 +29,11 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ],
+      "package": "ru.siniks7.purpleapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -42,20 +48,29 @@
             "./assets/fonts/FiraSans-SemiBold.ttf"
           ]
         }
-        ],
-        [
-          "expo-notifications",
-          {
-            "icon": "./assets/notification-icon.png",
-            "color": "#16171D"
-          }
-        ],
-        [
-          "expo-image-picker",
-          {
-            "photosPermission": "Необходимо разрешение для выбора фото профиля"
-          }
-        ]
-    ]
+      ],
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/notification-icon.png",
+          "color": "#16171D"
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Необходимо разрешение для выбора фото профиля"
+        }
+      ]
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "366dd3c6-a623-4596-b1a4-51436b2c4266"
+      }
+    },
+    "owner": "siniks7"
   }
 }
